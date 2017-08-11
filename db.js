@@ -7,15 +7,15 @@ const hashids = new Hashids()
 
 const db = PouchDB(process.env.SURL_DB)
 
-const createDoc = (url) => 
+const createDoc = (url) =>
   db.upsert('_local/surl', compose(
     evolve({counter: inc}),
-    merge({counter: 0})
+    merge({counter: 100})
   ))
   .then(doc => db.get(doc.id))
   .then(prop('counter'))
   .then(v => hashids.encode(Number(v)))
-  .then(surl => 
+  .then(surl =>
     db.put({
       _id: surl,
       url,

@@ -3,9 +3,8 @@
 <head>
   <title>twilson63.sh</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="https://unpkg.com/tachyons" />
-  <link rel="stylesheet" href="https://unpkg.com/animate.css" />
-  <link rel="icon" href="https://cdn.glitch.com/91dd0702-e6f3-47f1-bb2b-a47f8a5d3db4%2Ffavicon.ico?1502045862860" type="image/x-icon" />
+  <link rel="stylesheet" href="/tachyons.min.css" />
+  <link rel="stylesheet" href="/animate.min.css" />
 </head>
 <body>
 	<div id="app">
@@ -17,15 +16,15 @@
             <fieldset class="cf bn ma0 pa0">
               <div class="cf">
                 <label class="clip" for="web-address">URL</label>
-                <input autofocus class="f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-100 w-75-m w-80-l br2-ns br--left-ns" 
+                <input autofocus class="f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-100 w-75-m w-80-l br2-ns br--left-ns"
                   placeholder="https://your-web-address.here" type="text" name="url" value="" id="web-address" />
-                <input class="f6 f5-l button-reset fl pv3 tc bn bg-animate bg-black-70 hover-bg-black white pointer w-100 w-25-m w-20-l br2-ns br--right-ns" 
+                <input class="f6 f5-l button-reset fl pv3 tc bn bg-animate bg-black-70 hover-bg-black white pointer w-100 w-25-m w-20-l br2-ns br--right-ns"
                   type="submit" value="Shorten" />
               </div>
             </fieldset>
           </form>
-          <div id="surl" class="mt3">
-            
+          <div id="surl" class="mt3 f3">
+
           </div>
         </div>
       </div>
@@ -39,15 +38,22 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }, 
+        },
         body: JSON.stringify({url})
       })
       .then(res => res.json())
       .then(res => {
         document.querySelector('#surl').innerHTML = `<a href="${'https://twilson63.sh/' + res.id}">${'https://twilson63.sh/' + res.id}</a>`
-      }) 
+      })
     })
-      
+
+  </script>
+  <script src="/upup.min.js"></script>
+  <script>
+    UpUp.start({
+      'content-url': '/offline.html',
+      'assets': ['/tachyons.min.css', '/animate.min.css', '/favicon.ico']
+    });
   </script>
 
 </body>
